@@ -19,6 +19,10 @@ and triggers emergency calls with siren alerts — providing rapid response capa
 
 ---
 
+ <img width="1707" height="963" alt="Image" src="https://github.com/user-attachments/assets/16c49223-ae30-4eba-8b41-4f8411004cbf" />
+
+<img width="1710" height="969" alt="Image" src="https://github.com/user-attachments/assets/10ee4863-4edd-4f0e-aa76-91aaaa2b2292" />
+
 ## 🚀 Features  
 
 ✅ **Adaptive Traffic Control** – YOLOv8 detects vehicles and optimizes signal durations  
@@ -96,10 +100,8 @@ Open index.html in any browser to access:
 	•	🔹 Traffic Management
 	•	🔹 Accident Detection
 	•	🔹 Emergency Call System
+########
 
-
-  <img width="1707" height="963" alt="Image" src="https://github.com/user-attachments/assets/16c49223-ae30-4eba-8b41-4f8411004cbf" />
-
-<img width="1710" height="969" alt="Image" src="https://github.com/user-attachments/assets/10ee4863-4edd-4f0e-aa76-91aaaa2b2292" />
+ 
 
 
