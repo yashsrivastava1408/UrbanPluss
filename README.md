@@ -98,4 +98,8 @@ Open index.html in any browser to access:
 	•	🔹 Emergency Call System
 
 
-  
+  <img width="1707" height="963" alt="Image" src="https://github.com/user-attachments/assets/16c49223-ae30-4eba-8b41-4f8411004cbf" />
+
+<img width="1710" height="969" alt="Image" src="https://github.com/user-attachments/assets/10ee4863-4edd-4f0e-aa76-91aaaa2b2292" />
+
+
