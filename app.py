@@ -8,6 +8,12 @@ from ultralytics import YOLO
 from twilio.rest import Client
 
 
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
 # --- Backend Configuration ---
 app = Flask(__name__)
 CORS(app)
@@ -15,15 +21,24 @@ CORS(app)
 # --- YOLO Model ---
 model = YOLO('yolov8n.pt')
 # --- Twilio Config ---
-TWILIO_ACCOUNT_SID = "xxxxxxxx"
-TWILIO_AUTH_TOKEN = "xxxxxxx"
-TWILIO_PHONE_NUMBER = "xxxxxx"   # your Twilio number
-EMERGENCY_PHONE_NUMBER = "+xxxxxxx"  # where to call
-
-client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER")
+if all([TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER, EMERGENCY_PHONE_NUMBER]):
+    try:
+        client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+    except Exception as e:
+        print(f"Failed to initialize Twilio client: {e}")
+        client = None
+else:
+    print("Twilio credentials missing. Emergency call feature disabled.")
+    client = None
 
 @app.route('/api/make-call', methods=['POST'])
 def make_call():
+    if not client:
+        return jsonify({"error": "Emergency calling is not configured (missing Twilio keys)."}), 503
+        
     try:
         call = client.calls.create(
             to=EMERGENCY_PHONE_NUMBER,
@@ -252,6 +267,7 @@ def accident_video_feed():
     return Response(generate_accident_video_stream(), mimetype="multipart/x-mixed-replace; boundary=frame")
 
 if __name__ == '__main__':
-    print("Starting backend services...")
-    app.run(host='0.0.0.0', port=5001, debug=False)
+    port = int(os.environ.get("PORT", 5001))
+    print(f"Starting backend services on port {port}...")
+    app.run(host='0.0.0.0', port=port, debug=False)
 

@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- API & Configuration ---
-    const DATA_API_URL = 'http://localhost:5001/api/traffic-data';
-    const START_API_URL = 'http://localhost:5001/api/start-analysis';
+    // IMPORTANT: When deploying, replace 'http://localhost:5001' with your actual Render Backend URL
+    // Example: const API_BASE_URL = 'https://urbanpluss-backend.onrender.com';
+    const API_BASE_URL = 'http://localhost:5001'; 
+    
+    const DATA_API_URL = `${API_BASE_URL}/api/traffic-data`;
+    const START_API_URL = `${API_BASE_URL}/api/start-analysis`;
     const YELLOW_LIGHT_DURATION = 3; 
 
     // --- DOM Element References ---
